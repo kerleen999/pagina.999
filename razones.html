@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Razones Trigonométricas | Kerleen.io</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- MATHJAX -->
+    <script>
+
+        window.MathJax = {
+
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            },
+
+            svg: {
+                fontCache: 'global'
+            }
+
+        };
+
+    </script>
+
+    <script
+        async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+
+    <style>
+
+        /* =========================================
+           CORRECCIÓN — TRIÁNGULO DE RAZONES
+        ========================================= */
+
+        .triangulo-explicacion {
+
+            max-width: 1100px;
+
+            margin: 45px auto 0;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(320px, 1fr)
+                minmax(320px, 1fr);
+
+            gap: 55px;
+
+            align-items: center;
+
+        }
+
+
+        /* =========================================
+           ÁREA DEL TRIÁNGULO
+        ========================================= */
+
+        .triangulo-visual {
+
+            min-height: 430px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f5f4ff,
+                    #eefcff
+                );
+
+            border: 1px solid var(--borde);
+
+            overflow: hidden;
+
+        }
+
+
+        /* =========================================
+           TRIÁNGULO
+        ========================================= */
+
+        .triangulo-css {
+
+            width: 280px;
+
+            height: 230px;
+
+            position: relative;
+
+            transform: none;
+
+            clip-path:
+                polygon(
+                    0 100%,
+                    0 0,
+                    100% 100%
+                );
+
+            background:
+                rgba(
+                    91,
+                    92,
+                    226,
+                    0.10
+                );
+
+            border: none;
+
+        }
+
+
+        /* LADO VERTICAL */
+
+        .triangulo-css::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 5px;
+
+            height: 100%;
+
+            background:
+                var(--primario);
+
+        }
+
+
+        /* LADO HORIZONTAL */
+
+        .triangulo-css::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 100%;
+
+            height: 5px;
+
+            background:
+                var(--primario);
+
+        }
+
+
+        /* =========================================
+           ETIQUETAS DEL TRIÁNGULO
+        ========================================= */
+
+        .lado-opuesto,
+        .lado-adyacente,
+        .lado-hipotenusa,
+        .angulo-triangulo {
+
+            position: absolute;
+
+            z-index: 2;
+
+            font-weight: 800;
+
+            color: var(--oscuro);
+
+            white-space: nowrap;
+
+        }
+
+
+        /* OPUESTO */
+
+        .lado-opuesto {
+
+            left: -5px;
+
+            top: 50%;
+
+            transform:
+                translate(
+                    -100%,
+                    -50%
+                );
+
+            color: #dc2626;
+
+            font-size: 0.95rem;
+
+        }
+
+
+        /* ADYACENTE */
+
+        .lado-adyacente {
+
+            left: 50%;
+
+            bottom: -38px;
+
+            transform:
+                translateX(-50%);
+
+            color: #1684c7;
+
+            font-size: 0.95rem;
+
+        }
+
+
+        /* HIPOTENUSA */
+
+        .lado-hipotenusa {
+
+            right: 22px;
+
+            top: 38%;
+
+            transform:
+                rotate(-39deg);
+
+            color: #16a34a;
+
+            font-size: 0.95rem;
+
+        }
+
+
+        /* ÁNGULO */
+
+        .angulo-triangulo {
+
+            left: 18px;
+
+            top: 12px;
+
+            color:
+                var(--primario);
+
+            font-size: 1.3rem;
+
+        }
+
+
+        /* =========================================
+           EXPLICACIONES
+        ========================================= */
+
+        .partes-triangulo {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 22px;
+
+        }
+
+
+        .parte {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            padding: 22px;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid var(--borde);
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 24px
+                rgba(
+                    20,
+                    30,
+                    60,
+                    0.06
+                );
+
+        }
+
+
+        .parte-icono {
+
+            flex:
+                0 0 auto;
+
+            font-size:
+                1.55rem;
+
+            line-height: 1;
+
+        }
+
+
+        .parte h3 {
+
+            margin:
+                0 0 7px;
+
+        }
+
+
+        .parte p {
+
+            margin: 0;
+
+            line-height:
+                1.6;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .triangulo-explicacion {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 35px;
+
+            }
+
+
+            .triangulo-visual {
+
+                min-height: 380px;
+
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .triangulo-css {
+
+                width: 220px;
+
+                height: 180px;
+
+            }
+
+
+            .lado-opuesto,
+            .lado-adyacente,
+            .lado-hipotenusa {
+
+                font-size:
+                    0.78rem;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+
+    <header>
+
+        <div class="logo">
+
+            <span>Kerleen</span><strong>.io</strong>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="conceptos.html">
+                Conceptos
+            </a>
+
+            <a href="razones.html"
+               class="activo">
+
+                Razones
+
+            </a>
+
+            <a href="circunferencia.html">
+                Circunferencia
+            </a>
+
+            <a href="identidades.html">
+                Identidades
+            </a>
+
+            <a href="problemas.html">
+                Problemas
+            </a>
+
+            <a href="quiz.html">
+                🧠 Quiz
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="pagina-hero razones-hero">
+
+            <p class="etiqueta">
+
+                📐 APRENDE DESDE CERO
+
+            </p>
+
+
+            <h1>
+
+                Razones<br>
+                trigonométricas
+
+            </h1>
+
+
+            <p>
+
+                Descubre cómo relacionar los lados de un
+                triángulo rectángulo con sus ángulos.
+
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             INTRODUCCIÓN
+        ========================== -->
+
+        <section class="contenido-seccion">
+
+            <div class="titulo-seccion">
+
+                <p>
+
+                    EMPECEMOS POR LO BÁSICO
+
+                </p>
+
+
+                <h2>
+
+                    ¿Qué son las razones trigonométricas?
+
+                </h2>
+
+            </div>
+
+
+            <div class="texto-introduccion">
+
+                <p>
+
+                    Las <strong>razones trigonométricas</strong>
+                    son relaciones entre los lados de un
+                    triángulo rectángulo que dependen de uno
+                    de sus ángulos agudos.
+
+                </p>
+
+
+                <p>
+
+                    Las tres razones principales que
+                    aprenderemos son:
+
+                </p>
+
+
+                <div class="tres-razones">
+
+
+                    <div class="razon-mini">
+
+                        <span>
+                            sin
+                        </span>
+
+                        <strong>
+                            Seno
+                        </strong>
+
+                    </div>
+
+
+                    <div class="razon-mini">
+
+                        <span>
+                            cos
+                        </span>
+
+                        <strong>
+                            Coseno
+                        </strong>
+
+                    </div>
+
+
+                    <div class="razon-mini">
+
+                        <span>
+                            tan
+                        </span>
+
+                        <strong>
+                            Tangente
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TRIÁNGULO
+        ========================== -->
+
+        <section class="seccion-destacada">
+
+            <div class="titulo-seccion">
+
+                <p>
+
+                    CONOZCAMOS SUS PARTES
+
+                </p>
+
+
+                <h2>
+
+                    El triángulo rectángulo
+
+                </h2>
+
+            </div>
+
+
+            <div class="triangulo-explicacion">
+
+
+                <!-- TRIÁNGULO VISUAL -->
+
+                <div class="triangulo-visual">
+
+                    <div class="triangulo-css">
+
+                        <span class="lado-opuesto">
+
+                            Opuesto
+
+                        </span>
+
+
+                        <span class="lado-adyacente">
+
+                            Adyacente
+
+                        </span>
+
+
+                        <span class="lado-hipotenusa">
+
+                            Hipotenusa
+
+                        </span>
+
+
+                        <span class="angulo-triangulo">
+
+                            θ
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXPLICACIÓN -->
+
+                <div class="partes-triangulo">
+
+
+                    <div class="parte">
+
+                        <span class="parte-icono">
+
+                            🔴
+
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+
+                                Cateto opuesto
+
+                            </h3>
+
+
+                            <p>
+
+                                Es el lado que se encuentra
+                                frente al ángulo que estamos
+                                estudiando.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="parte">
+
+                        <span class="parte-icono">
+
+                            🔵
+
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+
+                                Cateto adyacente
+
+                            </h3>
+
+
+                            <p>
+
+                                Es el cateto que está junto
+                                al ángulo que estamos
+                                estudiando.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="parte">
+
+                        <span class="parte-icono">
+
+                            🟢
+
+                        </span>
+
+
+                        <div>
+
+                            <h3>
+
+                                Hipotenusa
+
+                            </h3>
+
+
+                            <p>
+
+                                Es el lado más largo y siempre
+                                se encuentra frente al ángulo
+                                recto.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SOH CAH TOA
+        ========================== -->
+
+        <section class="contenido-seccion">
+
+            <div class="titulo-seccion">
+
+                <p>
+
+                    EL TRUCO PARA RECORDARLAS
+
+                </p>
+
+
+                <h2>
+
+                    SOH - CAH - TOA
+
+                </h2>
+
+            </div>
+
+
+            <div class="soh-cah-toa">
+
+
+                <div class="regla-trigonometrica">
+
+                    <div class="regla-letra">
+
+                        S
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+
+                            Seno
+
+                        </h3>
+
+
+                        <p>
+
+                            Opuesto / Hipotenusa
+
+                        </p>
+
+
+                        <div class="formula">
+
+                            $$\sin(\theta)=
+                            \frac{\text{opuesto}}
+                            {\text{hipotenusa}}$$
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="regla-trigonometrica">
+
+                    <div class="regla-letra">
+
+                        C
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+
+                            Coseno
+
+                        </h3>
+
+
+                        <p>
+
+                            Adyacente / Hipotenusa
+
+                        </p>
+
+
+                        <div class="formula">
+
+                            $$\cos(\theta)=
+                            \frac{\text{adyacente}}
+                            {\text{hipotenusa}}$$
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="regla-trigonometrica">
+
+                    <div class="regla-letra">
+
+                        T
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+
+                            Tangente
+
+                        </h3>
+
+
+                        <p>
+
+                            Opuesto / Adyacente
+
+                        </p>
+
+
+                        <div class="formula">
+
+                            $$\tan(\theta)=
+                            \frac{\text{opuesto}}
+                            {\text{adyacente}}$$
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="idea-importante">
+
+                💡 <strong>SOH - CAH - TOA</strong>
+
+                te ayuda a recordar qué lados debes utilizar
+                en cada razón trigonométrica.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EJEMPLO
+        ========================== -->
+
+        <section class="seccion-gris">
+
+            <div class="titulo-seccion">
+
+                <p>
+
+                    VEÁMOSLO EN UN EJEMPLO
+
+                </p>
+
+
+                <h2>
+
+                    Triángulo 3 - 4 - 5
+
+                </h2>
+
+            </div>
+
+
+            <div class="ejemplo-trigonometrico">
+
+
+                <div class="ejemplo-triangulo">
+
+                    <div class="triangulo-345">
+
+                        <span class="valor-3">
+
+                            3
+
+                        </span>
+
+
+                        <span class="valor-4">
+
+                            4
+
+                        </span>
+
+
+                        <span class="valor-5">
+
+                            5
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ejemplo-calculo">
+
+                    <p>
+
+                        Supongamos que:
+
+                    </p>
+
+
+                    <p>
+
+                        Cateto opuesto = $3$
+
+                    </p>
+
+
+                    <p>
+
+                        Cateto adyacente = $4$
+
+                    </p>
+
+
+                    <p>
+
+                        Hipotenusa = $5$
+
+                    </p>
+
+
+                    <div class="calculo-box">
+
+                        $$\sin(\theta)=\frac{3}{5}=0.6$$
+
+                        $$\cos(\theta)=\frac{4}{5}=0.8$$
+
+                        $$\tan(\theta)=\frac{3}{4}=0.75$$
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ¿CUÁL USAR?
+        ========================== -->
+
+        <section class="contenido-seccion">
+
+            <div class="titulo-seccion">
+
+                <p>
+
+                    UNA PREGUNTA MUY COMÚN
+
+                </p>
+
+
+                <h2>
+
+                    ¿Cuál razón trigonométrica debo usar?
+
+                </h2>
+
+            </div>
+
+
+            <div class="eleccion-razon">
+
+
+                <div class="paso-razon">
+
+                    <span>
+
+                        1
+
+                    </span>
+
+
+                    <h3>
+
+                        ¿Conoces el opuesto y la hipotenusa?
+
+                    </h3>
+
+
+                    <p>
+
+                        Entonces utiliza:
+
+                    </p>
+
+
+                    <strong>
+
+                        SENO
+
+                    </strong>
+
+                </div>
+
+
+                <div class="paso-razon">
+
+                    <span>
+
+                        2
+
+                    </span>
+
+
+                    <h3>
+
+                        ¿Conoces el adyacente y la hipotenusa?
+
+                    </h3>
+
+
+                    <p>
+
+                        Entonces utiliza:
+
+                    </p>
+
+
+                    <strong>
+
+                        COSENO
+
+                    </strong>
+
+                </div>
+
+
+                <div class="paso-razon">
+
+                    <span>
+
+                        3
+
+                    </span>
+
+
+                    <h3>
+
+                        ¿Conoces los dos catetos?
+
+                    </h3>
+
+
+                    <p>
+
+                        Entonces utiliza:
+
+                    </p>
+
+
+                    <strong>
+
+                        TANGENTE
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMPARACIÓN
+        ========================== -->
+
+        <section class="seccion-destacada">
+
+            <div class="titulo-seccion">
+
+                <p>
+
+                    RESUMEN
+
+                </p>
+
+
+                <h2>
+
+                    Las tres razones
+
+                </h2>
+
+            </div>
+
+
+            <div class="tabla-razones">
+
+                <div class="tabla-razones-cabecera">
+
+                    <span>
+
+                        Razón
+
+                    </span>
+
+
+                    <span>
+
+                        Fórmula
+
+                    </span>
+
+
+                    <span>
+
+                        Relación
+
+                    </span>
+
+                </div>
+
+
+                <div class="fila-razon">
+
+                    <strong>
+
+                        Seno
+
+                    </strong>
+
+
+                    <span>
+
+                        $\sin(\theta)$
+
+                    </span>
+
+
+                    <span>
+
+                        Opuesto / Hipotenusa
+
+                    </span>
+
+                </div>
+
+
+                <div class="fila-razon">
+
+                    <strong>
+
+                        Coseno
+
+                    </strong>
+
+
+                    <span>
+
+                        $\cos(\theta)$
+
+                    </span>
+
+
+                    <span>
+
+                        Adyacente / Hipotenusa
+
+                    </span>
+
+                </div>
+
+
+                <div class="fila-razon">
+
+                    <strong>
+
+                        Tangente
+
+                    </strong>
+
+
+                    <span>
+
+                        $\tan(\theta)$
+
+                    </span>
+
+
+                    <span>
+
+                        Opuesto / Adyacente
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SIGUIENTE
+        ========================== -->
+
+        <section class="siguiente">
+
+            <p>
+
+                Ya conoces las tres razones principales.
+
+            </p>
+
+
+            <h2>
+
+                Ahora podemos descubrir
+                relaciones mucho más interesantes.
+
+            </h2>
+
+
+            <a
+                href="circunferencia.html"
+                class="boton principal">
+
+                ⭕ Explorar circunferencia →
+
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="logo">
+
+            <span>Kerleen</span><strong>.io</strong>
+
+        </div>
+
+
+        <p>
+
+            Aprende matemáticas de una manera diferente.
+
+        </p>
+
+
+        <p class="copyright">
+
+            © 2026 Kerleen.io — Trigonometría
+
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

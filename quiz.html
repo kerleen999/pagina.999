@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz de Trigonometría | Kerleen.io</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+    <script
+        async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <style>
+
+        /* =====================================================
+           QUIZ KERLEEN.IO
+        ===================================================== */
+
+        .quiz-hero {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f1f0ff,
+                    #eefcff
+                );
+
+        }
+
+
+        .quiz-contenedor {
+
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            padding: 20px;
+
+        }
+
+
+        /* =========================
+           INICIO DEL QUIZ
+        ========================= */
+
+        .quiz-inicio {
+
+            text-align: center;
+
+            padding: 55px 30px;
+
+            background: white;
+
+            border: 1px solid var(--borde);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(23, 32, 51, 0.08);
+
+        }
+
+
+        .quiz-icono {
+
+            font-size: 4rem;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .quiz-inicio h2 {
+
+            font-size: 2rem;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .quiz-inicio p {
+
+            max-width: 600px;
+
+            margin: 0 auto 25px;
+
+            color: #646977;
+
+            line-height: 1.7;
+
+        }
+
+
+        .quiz-info {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin: 30px 0;
+
+        }
+
+
+        .quiz-info-item {
+
+            padding: 20px;
+
+            background: #f7f8fc;
+
+            border-radius: 18px;
+
+        }
+
+
+        .quiz-info-item strong {
+
+            display: block;
+
+            font-size: 1.5rem;
+
+            color: var(--primario);
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .quiz-info-item span {
+
+            color: #707582;
+
+            font-size: 0.9rem;
+
+        }
+
+
+        .boton-quiz {
+
+            display: inline-block;
+
+            border: none;
+
+            padding: 15px 28px;
+
+            border-radius: 14px;
+
+            background: var(--primario);
+
+            color: white;
+
+            font-size: 1rem;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+
+        }
+
+
+        .boton-quiz:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0, 0, 0, 0.12);
+
+        }
+
+
+        /* =========================
+           QUIZ
+        ========================= */
+
+        #quiz {
+
+            display: none;
+
+        }
+
+
+        .quiz-superior {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .numero-pregunta {
+
+            font-weight: 900;
+
+            color: var(--primario);
+
+        }
+
+
+        .contador {
+
+            color: #777d8a;
+
+            font-size: 0.9rem;
+
+        }
+
+
+        .barra-fondo {
+
+            width: 100%;
+
+            height: 9px;
+
+            border-radius: 20px;
+
+            background: #e8e9ef;
+
+            overflow: hidden;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .barra-progreso {
+
+            width: 0%;
+
+            height: 100%;
+
+            background: var(--primario);
+
+            transition:
+                width 0.3s ease;
+
+        }
+
+
+        .pregunta-card {
+
+            padding: 35px;
+
+            background: white;
+
+            border: 1px solid var(--borde);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(23, 32, 51, 0.07);
+
+        }
+
+
+        .categoria-pregunta {
+
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            margin-bottom: 18px;
+
+            border-radius: 9px;
+
+            background: var(--suave);
+
+            color: var(--primario);
+
+            font-size: 0.75rem;
+
+            font-weight: 900;
+
+        }
+
+
+        .pregunta-card h2 {
+
+            font-size: 1.45rem;
+
+            line-height: 1.5;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .opciones {
+
+            display: grid;
+
+            gap: 13px;
+
+        }
+
+
+        .opcion {
+
+            width: 100%;
+
+            padding: 17px 20px;
+
+            border: 2px solid #e5e6eb;
+
+            border-radius: 15px;
+
+            background: white;
+
+            text-align: left;
+
+            font-size: 1rem;
+
+            color: #414653;
+
+            cursor: pointer;
+
+            transition:
+                all 0.2s ease;
+
+        }
+
+
+        .opcion:hover {
+
+            border-color: var(--primario);
+
+            background: #f8f7ff;
+
+        }
+
+
+        .opcion.seleccionada {
+
+            border-color: var(--primario);
+
+            background: var(--suave);
+
+            color: var(--primario);
+
+            font-weight: 800;
+
+        }
+
+
+        .quiz-navegacion {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            margin-top: 25px;
+
+        }
+
+
+        #boton-siguiente {
+
+            display: none;
+
+        }
+
+
+        /* =========================
+           RESULTADO
+        ========================= */
+
+        #resultado {
+
+            display: none;
+
+            text-align: center;
+
+        }
+
+
+        .resultado-card {
+
+            padding: 55px 30px;
+
+            background: white;
+
+            border: 1px solid var(--borde);
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(23, 32, 51, 0.08);
+
+        }
+
+
+        .resultado-icono {
+
+            font-size: 4.5rem;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .resultado-card h2 {
+
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .resultado-puntos {
+
+            font-size: 3.5rem;
+
+            font-weight: 900;
+
+            color: var(--primario);
+
+            margin: 15px 0;
+
+        }
+
+
+        .resultado-mensaje {
+
+            max-width: 600px;
+
+            margin: 0 auto 25px;
+
+            color: #626875;
+
+            line-height: 1.7;
+
+        }
+
+
+        .resultado-barra {
+
+            max-width: 500px;
+
+            height: 15px;
+
+            margin: 25px auto;
+
+            border-radius: 20px;
+
+            background: #e8e9ef;
+
+            overflow: hidden;
+
+        }
+
+
+        .resultado-barra-interior {
+
+            height: 100%;
+
+            width: 0%;
+
+            background: var(--primario);
+
+            transition:
+                width 1s ease;
+
+        }
+
+
+        .resultado-botones {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+
+        }
+
+
+        .boton-secundario {
+
+            display: inline-block;
+
+            padding: 15px 25px;
+
+            border-radius: 14px;
+
+            border: 2px solid var(--primario);
+
+            color: var(--primario);
+
+            background: white;
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .quiz-info {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .pregunta-card {
+
+                padding: 25px 20px;
+
+            }
+
+
+            .quiz-superior {
+
+                gap: 10px;
+
+            }
+
+
+            .resultado-puntos {
+
+                font-size: 2.8rem;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+
+    <header>
+
+        <div class="logo">
+
+            <span>Kerleen</span><strong>.io</strong>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="conceptos.html">
+                Conceptos
+            </a>
+
+            <a href="razones.html">
+                Razones
+            </a>
+
+            <a href="circunferencia.html">
+                Circunferencia
+            </a>
+
+            <a href="identidades.html">
+                Identidades
+            </a>
+
+            <a href="problemas.html">
+                Problemas
+            </a>
+
+            <a href="quiz.html" class="activo">
+                🧠 Quiz
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="pagina-hero quiz-hero">
+
+            <p class="etiqueta">
+                🧠 PON A PRUEBA LO APRENDIDO
+            </p>
+
+            <h1>
+                Quiz de<br>
+                trigonometría
+            </h1>
+
+            <p>
+
+                ¿Cuánto has aprendido?
+                Responde las preguntas y descubre tu nivel.
+
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             CONTENEDOR
+        ========================== -->
+
+        <section class="contenido-seccion">
+
+            <div class="quiz-contenedor">
+
+
+                <!-- =========================
+                     PANTALLA INICIAL
+                ========================== -->
+
+                <div id="inicio-quiz" class="quiz-inicio">
+
+                    <div class="quiz-icono">
+                        🧠
+                    </div>
+
+
+                    <h2>
+                        ¿Estás preparado?
+                    </h2>
+
+
+                    <p>
+
+                        Este quiz contiene preguntas sobre
+                        conceptos, razones trigonométricas,
+                        ángulos, identidades y problemas.
+
+                    </p>
+
+
+                    <div class="quiz-info">
+
+                        <div class="quiz-info-item">
+
+                            <strong>
+                                10
+                            </strong>
+
+                            <span>
+                                Preguntas
+                            </span>
+
+                        </div>
+
+
+                        <div class="quiz-info-item">
+
+                            <strong>
+                                4
+                            </strong>
+
+                            <span>
+                                Alternativas
+                            </span>
+
+                        </div>
+
+
+                        <div class="quiz-info-item">
+
+                            <strong>
+                                100
+                            </strong>
+
+                            <span>
+                                Puntos máximos
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        id="boton-iniciar"
+                        class="boton-quiz">
+
+                        🚀 Comenzar quiz
+
+                    </button>
+
+                </div>
+
+
+                <!-- =========================
+                     QUIZ
+                ========================== -->
+
+                <div id="quiz">
+
+
+                    <div class="quiz-superior">
+
+                        <span
+                            id="numero-pregunta"
+                            class="numero-pregunta">
+
+                            Pregunta 1
+
+                        </span>
+
+
+                        <span
+                            id="contador"
+                            class="contador">
+
+                            1 de 10
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="barra-fondo">
+
+                        <div
+                            id="barra-progreso"
+                            class="barra-progreso">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="pregunta-card">
+
+
+                        <span
+                            id="categoria"
+                            class="categoria-pregunta">
+
+                            Razones trigonométricas
+
+                        </span>
+
+
+                        <h2 id="pregunta">
+
+                            Pregunta
+
+                        </h2>
+
+
+                        <div
+                            id="opciones"
+                            class="opciones">
+
+                        </div>
+
+
+                        <div class="quiz-navegacion">
+
+                            <button
+                                id="boton-siguiente"
+                                class="boton-quiz">
+
+                                Siguiente →
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     RESULTADO
+                ========================== -->
+
+                <div id="resultado">
+
+
+                    <div class="resultado-card">
+
+
+                        <div
+                            id="resultado-icono"
+                            class="resultado-icono">
+
+                            🎉
+
+                        </div>
+
+
+                        <h2>
+                            ¡Quiz terminado!
+                        </h2>
+
+
+                        <p>
+                            Tu puntuación:
+                        </p>
+
+
+                        <div
+                            id="resultado-puntos"
+                            class="resultado-puntos">
+
+                            0/100
+
+                        </div>
+
+
+                        <p
+                            id="resultado-mensaje"
+                            class="resultado-mensaje">
+
+                        </p>
+
+
+                        <div class="resultado-barra">
+
+                            <div
+                                id="resultado-barra-interior"
+                                class="resultado-barra-interior">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="resultado-botones">
+
+
+                            <button
+                                id="boton-reintentar"
+                                class="boton-quiz">
+
+                                🔄 Intentar nuevamente
+
+                            </button>
+
+
+                            <a
+                                href="index.html"
+                                class="boton-secundario">
+
+                                🏠 Volver al inicio
+
+                            </a>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="logo">
+
+            <span>Kerleen</span><strong>.io</strong>
+
+        </div>
+
+
+        <p>
+            Aprende matemáticas de una manera diferente.
+        </p>
+
+
+        <p class="copyright">
+
+            © 2026 Kerleen.io — Trigonometría
+
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT DEL QUIZ -->
+
+    <script src="quiz.js"></script>
+
+
+</body>
+
+</html>

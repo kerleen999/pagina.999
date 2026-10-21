@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Circunferencia Trigonométrica | Kerleen.io</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- P5.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.min.js"></script>
+
+    <!-- MATHJAX -->
+    <script>
+
+        window.MathJax = {
+
+            tex: {
+                inlineMath: [
+                    ['$', '$'],
+                    ['\\(', '\\)']
+                ]
+            },
+
+            svg: {
+                fontCache: 'global'
+            }
+
+        };
+
+    </script>
+
+    <script
+        async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ENCABEZADO
+    ========================== -->
+
+    <header>
+
+        <div class="logo">
+
+            <span>Kerleen</span><strong>.io</strong>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="conceptos.html">
+                Conceptos
+            </a>
+
+            <a href="razones.html">
+                Razones
+            </a>
+
+            <a href="circunferencia.html" class="activo">
+                Circunferencia
+            </a>
+
+            <a href="identidades.html">
+                Identidades
+            </a>
+
+            <a href="problemas.html">
+                Problemas
+            </a>
+
+            <a href="quiz.html">
+                🧠 Quiz
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =========================
+             PRESENTACIÓN
+        ========================== -->
+
+        <section class="pagina-hero circunferencia-hero">
+
+            <p class="etiqueta">
+                ⭕ UNA NUEVA FORMA DE VER LOS ÁNGULOS
+            </p>
+
+            <h1>
+                Circunferencia<br>
+                trigonométrica
+            </h1>
+
+            <p>
+
+                Descubre cómo una circunferencia de radio 1
+                nos permite comprender el seno y el coseno.
+
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             ¿QUÉ ES?
+        ========================== -->
+
+        <section class="contenido-seccion">
+
+            <div class="titulo-seccion">
+
+                <p>
+                    EMPECEMOS DESDE CERO
+                </p>
+
+                <h2>
+                    ¿Qué es la circunferencia trigonométrica?
+                </h2>
+
+            </div>
+
+
+            <div class="circulo-intro">
+
+
+                <div class="circulo-visual">
+
+                    <div class="circulo-base">
+
+                        <div class="eje-x"></div>
+
+                        <div class="eje-y"></div>
+
+                        <div class="centro-circulo">
+                            O
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="circulo-texto">
+
+                    <p>
+
+                        La <strong>circunferencia trigonométrica</strong>
+                        es una circunferencia cuyo centro está
+                        ubicado en el origen del plano cartesiano.
+
+                    </p>
+
+
+                    <p>
+
+                        Su característica principal es que
+                        tiene <strong>radio igual a 1</strong>.
+
+                    </p>
+
+
+                    <div class="formula-destacada">
+
+                        $$x^2+y^2=1$$
+
+                    </div>
+
+
+                    <p>
+
+                        Esta circunferencia nos ayuda a estudiar
+                        los valores del seno y coseno para
+                        diferentes ángulos.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COORDENADAS
+        ========================== -->
+
+        <section class="seccion-destacada">
+
+            <div class="titulo-seccion">
+
+                <p>
+                    LA IDEA CLAVE
+                </p>
+
+                <h2>
+                    El punto $(x,y)$
+                </h2>
+
+            </div>
+
+
+            <div class="coordenadas-contenido">
+
+
+                <div class="plano-circunferencia">
+
+                    <div class="eje-horizontal"></div>
+
+                    <div class="eje-vertical"></div>
+
+                    <div class="circunferencia-css">
+
+                        <div class="radio-linea"></div>
+
+                        <div class="punto-radio"></div>
+
+                    </div>
+
+
+                    <span class="eje-x-label">
+                        x
+                    </span>
+
+                    <span class="eje-y-label">
+                        y
+                    </span>
+
+                    <span class="punto-label">
+                        P(x,y)
+                    </span>
+
+                    <span class="radio-label">
+                        r = 1
+                    </span>
+
+                </div>
+
+
+                <div class="coordenadas-explicacion">
+
+
+                    <div class="dato">
+
+                        <span>①</span>
+
+                        <div>
+
+                            <h3>
+                                Eje X
+                            </h3>
+
+                            <p>
+                                Representa la coordenada
+                                horizontal.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dato">
+
+                        <span>②</span>
+
+                        <div>
+
+                            <h3>
+                                Eje Y
+                            </h3>
+
+                            <p>
+                                Representa la coordenada
+                                vertical.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dato">
+
+                        <span>③</span>
+
+                        <div>
+
+                            <h3>
+                                Punto P
+                            </h3>
+
+                            <p>
+                                Cada ángulo determina un
+                                punto diferente sobre la
+                                circunferencia.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SENO Y COSENO
+        ========================== -->
+
+        <section class="contenido-seccion">
+
+            <div class="titulo-seccion">
+
+                <p>
+                    LA CONEXIÓN FUNDAMENTAL
+                </p>
+
+                <h2>
+                    Seno y coseno en la circunferencia
+                </h2>
+
+            </div>
+
+
+            <div class="sen-cos">
+
+
+                <div class="formula-sen-cos">
+
+
+                    <div class="formula-box">
+
+                        <span>
+                            Coseno
+                        </span>
+
+                        $$\cos(\theta)=x$$
+
+                    </div>
+
+
+                    <div class="formula-box">
+
+                        <span>
+                            Seno
+                        </span>
+
+                        $$\sin(\theta)=y$$
+
+                    </div>
+
+                </div>
+
+
+                <div class="explicacion-sen-cos">
+
+                    <p>
+
+                        Cuando un punto $P$ se encuentra
+                        sobre la circunferencia trigonométrica,
+                        sus coordenadas están relacionadas
+                        directamente con el seno y el coseno.
+
+                    </p>
+
+
+                    <div class="idea-importante">
+
+                        💡 Si
+
+                        $$P=(x,y)$$
+
+                        entonces:
+
+                        $$P=(\cos\theta,\sin\theta)$$
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CUADRANTES
+        ========================== -->
+
+        <section class="seccion-gris">
+
+            <div class="titulo-seccion">
+
+                <p>
+                    DIVIDIMOS EL PLANO
+                </p>
+
+                <h2>
+                    Los cuatro cuadrantes
+                </h2>
+
+            </div>
+
+
+            <div class="cuadrantes">
+
+
+                <article class="cuadrante">
+
+                    <span class="numero-cuadrante">
+                        I
+                    </span>
+
+                    <h3>
+                        Primer cuadrante
+                    </h3>
+
+                    <p>
+                        $x$ positivo
+                        <br>
+                        $y$ positivo
+                    </p>
+
+                    <div class="signos">
+                        (+,+)
+                    </div>
+
+                </article>
+
+
+                <article class="cuadrante">
+
+                    <span class="numero-cuadrante">
+                        II
+                    </span>
+
+                    <h3>
+                        Segundo cuadrante
+                    </h3>
+
+                    <p>
+                        $x$ negativo
+                        <br>
+                        $y$ positivo
+                    </p>
+
+                    <div class="signos">
+                        (-,+)
+                    </div>
+
+                </article>
+
+
+                <article class="cuadrante">
+
+                    <span class="numero-cuadrante">
+                        III
+                    </span>
+
+                    <h3>
+                        Tercer cuadrante
+                    </h3>
+
+                    <p>
+                        $x$ negativo
+                        <br>
+                        $y$ negativo
+                    </p>
+
+                    <div class="signos">
+                        (-,-)
+                    </div>
+
+                </article>
+
+
+                <article class="cuadrante">
+
+                    <span class="numero-cuadrante">
+                        IV
+                    </span>
+
+                    <h3>
+                        Cuarto cuadrante
+                    </h3>
+
+                    <p>
+                        $x$ positivo
+                        <br>
+                        $y$ negativo
+                    </p>
+
+                    <div class="signos">
+                        (+,-)
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ÁNGULOS NOTABLES
+        ========================== -->
+
+        <section class="contenido-seccion">
+
+            <div class="titulo-seccion">
+
+                <p>
+                    LOS ÁNGULOS MÁS IMPORTANTES
+                </p>
+
+                <h2>
+                    Ángulos notables
+                </h2>
+
+            </div>
+
+
+            <div class="angulos-notables">
+
+                <div class="angulo-card">
+
+                    <strong>
+                        0°
+                    </strong>
+
+                    <span>
+                        $0$
+                    </span>
+
+                </div>
+
+
+                <div class="angulo-card">
+
+                    <strong>
+                        30°
+                    </strong>
+
+                    <span>
+                        $\frac{\pi}{6}$
+                    </span>
+
+                </div>
+
+
+                <div class="angulo-card">
+
+                    <strong>
+                        45°
+                    </strong>
+
+                    <span>
+                        $\frac{\pi}{4}$
+                    </span>
+
+                </div>
+
+
+                <div class="angulo-card">
+
+                    <strong>
+                        60°
+                    </strong>
+
+                    <span>
+                        $\frac{\pi}{3}$
+                    </span>
+
+                </div>
+
+
+                <div class="angulo-card">
+
+                    <strong>
+                        90°
+                    </strong>
+
+                    <span>
+                        $\frac{\pi}{2}$
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="tabla-notables">
+
+                <div class="tabla-notables-cabecera">
+
+                    <span>
+                        Ángulo
+                    </span>
+
+                    <span>
+                        $\sin$
+                    </span>
+
+                    <span>
+                        $\cos$
+                    </span>
+
+                </div>
+
+
+                <div class="fila-notable">
+
+                    <span>0°</span>
+                    <span>$0$</span>
+                    <span>$1$</span>
+
+                </div>
+
+
+                <div class="fila-notable">
+
+                    <span>30°</span>
+                    <span>$\frac{1}{2}$</span>
+                    <span>$\frac{\sqrt3}{2}$</span>
+
+                </div>
+
+
+                <div class="fila-notable">
+
+                    <span>45°</span>
+                    <span>$\frac{\sqrt2}{2}$</span>
+                    <span>$\frac{\sqrt2}{2}$</span>
+
+                </div>
+
+
+                <div class="fila-notable">
+
+                    <span>60°</span>
+                    <span>$\frac{\sqrt3}{2}$</span>
+                    <span>$\frac{1}{2}$</span>
+
+                </div>
+
+
+                <div class="fila-notable">
+
+                    <span>90°</span>
+                    <span>$1$</span>
+                    <span>$0$</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             LABORATORIO INTERACTIVO
+        ================================================== -->
+
+        <section class="laboratorio">
+
+            <div class="titulo-seccion">
+
+                <p>
+                    EXPERIMENTA
+                </p>
+
+                <h2>
+                    🧪 Laboratorio trigonométrico
+                </h2>
+
+                <p class="laboratorio-descripcion">
+
+                    Mueve el ángulo o selecciona uno de los
+                    valores para explorar la relación entre
+                    seno, coseno y coordenadas.
+
+                </p>
+
+            </div>
+
+
+            <div id="laboratorio-circunferencia">
+            </div>
+
+
+            <div class="laboratorio-info">
+
+
+                <div class="lab-dato">
+
+                    <span>θ</span>
+
+                    <strong>
+                        Ángulo
+                    </strong>
+
+                    <p id="valor-angulo">
+                        0°
+                    </p>
+
+                </div>
+
+
+                <div class="lab-dato">
+
+                    <span>x</span>
+
+                    <strong>
+                        Coseno
+                    </strong>
+
+                    <p id="valor-coseno">
+                        1.000
+                    </p>
+
+                </div>
+
+
+                <div class="lab-dato">
+
+                    <span>y</span>
+
+                    <strong>
+                        Seno
+                    </strong>
+
+                    <p id="valor-seno">
+                        0.000
+                    </p>
+
+                </div>
+
+
+                <div class="lab-dato">
+
+                    <span>P</span>
+
+                    <strong>
+                        Coordenadas
+                    </strong>
+
+                    <p id="valor-punto">
+                        (1, 0)
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPLICACIÓN DINÁMICA -->
+
+            <div
+                id="explicacion-angulo"
+                class="explicacion-dinamica">
+
+                📐 Selecciona un ángulo para descubrir
+                qué ocurre en la circunferencia.
+
+            </div>
+
+
+            <div class="laboratorio-ayuda">
+
+                💡 <strong>Consejo:</strong>
+
+                prueba primero con 30°, 45°, 60°, 90°,
+                180° y 270°.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SIGUIENTE
+        ========================== -->
+
+        <section class="siguiente">
+
+            <p>
+                Ya conocemos la circunferencia...
+            </p>
+
+            <h2>
+
+                Ahora descubriremos cómo relacionar
+                las identidades trigonométricas.
+
+            </h2>
+
+
+            <a
+                href="identidades.html"
+                class="boton principal">
+
+                🧠 Ver identidades →
+
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="logo">
+
+            <span>Kerleen</span><strong>.io</strong>
+
+        </div>
+
+
+        <p>
+            Aprende matemáticas de una manera diferente.
+        </p>
+
+
+        <p class="copyright">
+
+            © 2026 Kerleen.io — Trigonometría
+
+        </p>
+
+    </footer>
+
+
+    <script src="circunferencia.js"></script>
+
+</body>
+
+</html>
